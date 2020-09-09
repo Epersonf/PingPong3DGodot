@@ -62,6 +62,7 @@
     <Compile Include="Scripts\Pad.cs" />
     <Compile Include="Scripts\PadInherited\Bot.cs" />
     <Compile Include="Scripts\PadInherited\Player.cs" />
+    <Compile Include="Scripts\IShooter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

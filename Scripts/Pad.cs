@@ -1,13 +1,12 @@
 using Godot;
 using System;
 
-public class Pad : Node
+public class Pad : RigidBody, IShooter
 {
-	// Declare member variables here. Examples:
-	// private int a = 2;
-	// private string b = "text";
 
-	// Called when the node enters the scene tree for the first time.
+	[Export]
+	float speed = 50;
+
 	public override void _Ready()
 	{
 
@@ -16,11 +15,16 @@ public class Pad : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(float delta)
 	{
-		float horizontal = Input.GetActionStrength("ui_left") - Input.GetActionStrength("ui_right");
-		float vertical = Input.GetActionStrength("ui_up") - Input.GetActionStrength("ui_down");
+
 	}
 
 	public void MoveGameObject(Vector3 direction)
+	{
+		GD.Print(direction);
+		AddForce(direction * speed, Vector3.Zero);
+	}
+
+	public void Shoot()
 	{
 
 	}
