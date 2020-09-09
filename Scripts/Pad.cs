@@ -1,10 +1,8 @@
 using Godot;
 using System;
 
-public class Pad : RigidBody, IShooter
+public class Pad : RigidBody
 {
-	[Export]
-	Spatial spawnPoint = null;
 
 	[Export]
 	float speed = 50f;
@@ -13,24 +11,26 @@ public class Pad : RigidBody, IShooter
 	float jumpForce = 5f;
 
 	[Export]
-	PackedScene projectile;
+	NodePath shooterNode;
 
-	protected void MoveGameObject(Vector3 direction, float delta)
+	Shooter shooter;
+
+	public override void _Ready()
 	{
-		AddForce(direction * speed * delta, Vector3.Zero);
+		//get component
+		shooter = GetNode(shooterNode) as Shooter;
 	}
+
+	#region Inputs
+
+	protected void MoveGameObject(Vector3 direction, float delta) => AddForce(direction * speed * delta, Vector3.Zero);
 
 	protected void Jump()
 	{
 		AddForce(new Vector3(0, jumpForce, 0), Vector3.Zero);
 	}
 
-	public void Shoot()
-	{
-		if (projectile == null) return;
-		Node newProjectile = projectile.Instance();
-		AddChild(newProjectile);
-		Spatial nodeSpatial = newProjectile.GetChild<Spatial>(0);
-		nodeSpatial.Translation = Vector3.Zero;
-	}
+	public void Shoot() => shooter.Shoot();
+
+	#endregion Inputs
 }

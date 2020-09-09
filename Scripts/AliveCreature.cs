@@ -3,10 +3,6 @@ using System;
 
 public class AliveCreature : Node
 {
-
-	[Export]
-	Node baseNode = null;
-
 	[Export]
 	int life = 5;
 
@@ -31,6 +27,7 @@ public class AliveCreature : Node
 
 	public void Die()
 	{
+		Node baseNode = GetTree().Root;
 		baseNode.QueueFree();
 	}
 }
