@@ -3,29 +3,34 @@ using System;
 
 public class Pad : RigidBody, IShooter
 {
+	[Export]
+	Spatial spawnPoint = null;
 
 	[Export]
-	float speed = 50;
+	float speed = 50f;
 
-	public override void _Ready()
+	[Export]
+	float jumpForce = 5f;
+
+	[Export]
+	PackedScene projectile;
+
+	protected void MoveGameObject(Vector3 direction, float delta)
 	{
-
+		AddForce(direction * speed * delta, Vector3.Zero);
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(float delta)
+	protected void Jump()
 	{
-
-	}
-
-	public void MoveGameObject(Vector3 direction)
-	{
-		GD.Print(direction);
-		AddForce(direction * speed, Vector3.Zero);
+		AddForce(new Vector3(0, jumpForce, 0), Vector3.Zero);
 	}
 
 	public void Shoot()
 	{
-
+		if (projectile == null) return;
+		Node newProjectile = projectile.Instance();
+		AddChild(newProjectile);
+		Spatial nodeSpatial = newProjectile.GetChild<Spatial>(0);
+		nodeSpatial.Translation = Vector3.Zero;
 	}
 }
