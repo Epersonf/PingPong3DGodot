@@ -1,12 +1,12 @@
 using Godot;
 using System;
 
-public class Pad : KinematicBody
+public class Pad : KinematicBody, IAliveCreature
 {
-    #region Inspector Fields
+	#region Inspector Fields
 
-    //export = SerializeField
-    [Export]
+	//export = SerializeField
+	[Export]
 	float speed = 50f;
 
 	[Export]
@@ -18,25 +18,25 @@ public class Pad : KinematicBody
 	[Export]
 	NodePath aliveCreatureNode;
 
-    [Export]
+	[Export]
 	float gravityForce = 10f;
 
-    #endregion
+	#endregion
 
-    #region Private fields
+	#region Private fields
 
-    float upSpeed = 0;
+	float upSpeed = 0;
 
 	Shooter shooter;
 
 	AliveCreature aliveCreature;
 
-    #endregion
+	#endregion
 
-    #region Inherited
+	#region Inherited
 
-    //start
-    public override void _Ready()
+	//start
+	public override void _Ready()
 	{
 		//get component
 		shooter = GetNode(shooterNode) as Shooter;
@@ -70,7 +70,7 @@ public class Pad : KinematicBody
 
 	protected void Shoot() => shooter.Shoot();
 
-	protected void DealDamage(int value) => aliveCreature.DealDamage(value);
+	public void DealDamage(int value) => aliveCreature.DealDamage(value);
 
 	#endregion Inputs
 }

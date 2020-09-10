@@ -9,7 +9,7 @@ extents = Vector3( 0.18, 0.18, 1.014 )
 [node name="Projectile" type="Area"]
 transform = Transform( 1.62921e-07, 5.30863e-14, -1, 3.25841e-07, -1, 0, -1, -3.25841e-07, -1.62921e-07, 0, 0, 0 )
 script = ExtResource( 2 )
-speed = 0.2
+speed = 1.0
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.865 )

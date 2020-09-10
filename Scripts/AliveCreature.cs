@@ -30,3 +30,7 @@ public class AliveCreature : Node
 		Owner.QueueFree();
 	}
 }
+
+public interface IAliveCreature {
+	void DealDamage(int value);
+}

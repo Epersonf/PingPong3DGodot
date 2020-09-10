@@ -4,12 +4,10 @@ using System;
 public class Projectile : Area
 {
 	[Export]
-	float speed = 100;
+	int damage = 1;
 
-	public override void _Ready()
-	{
-		
-	}
+	[Export]
+	float speed = 100;
 
 	public override void _PhysicsProcess(float delta)
 	{
@@ -30,7 +28,9 @@ public class Projectile : Area
 	{
 		if (body != null)
 		{
-			Node hit = body as Node;
+			IAliveCreature hit = body as IAliveCreature;
+			if (hit == null) return;
+			hit.DealDamage(damage);
 		}
 		QueueFree();
 	}
