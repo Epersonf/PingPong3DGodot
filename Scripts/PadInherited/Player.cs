@@ -18,7 +18,7 @@ public class Player : Pad
 
 		if (horizontal == 0 && vertical == 0) return;
 
-		if (vertical >= 0) Jump();
+		if (vertical > 0) Jump();
 
 		Vector3 direction = new Vector3(horizontal, (vertical < 0) ? vertical : 0, 0);
 		MoveGameObject(direction, delta);

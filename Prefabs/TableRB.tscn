@@ -8,9 +8,8 @@ extents = Vector3( 22.08, 0.865, 8.204 )
 [sub_resource type="BoxShape" id=2]
 extents = Vector3( 22.08, 2.036, 0.601 )
 
-[node name="TableRB" type="RigidBody"]
+[node name="TableRB" type="StaticBody"]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, -1.261, 0 )
-mode = 1
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0303392, 0 )

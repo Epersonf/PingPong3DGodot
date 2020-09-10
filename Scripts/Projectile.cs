@@ -1,21 +1,37 @@
 using Godot;
 using System;
 
-public class Projectile : Node
+public class Projectile : Area
 {
-    // Declare member variables here. Examples:
-    // private int a = 2;
-    // private string b = "text";
+	[Export]
+	float speed = 100;
 
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
-    {
-        
-    }
+	public override void _Ready()
+	{
+		
+	}
 
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
+	public override void _PhysicsProcess(float delta)
+	{
+		((Spatial) this).Translation += -Transform.basis.z * speed;
+	}
+
+	private void _on_Timer_timeout()
+	{
+		Hit();
+	}
+
+	private void _on_Projectile_body_entered(object body)
+	{
+		Hit(body);
+	}
+
+	public void Hit(object body = null)
+	{
+		if (body != null)
+		{
+			Node hit = body as Node;
+		}
+		QueueFree();
+	}
 }

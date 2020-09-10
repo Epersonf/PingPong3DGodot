@@ -12,13 +12,22 @@ public class Shooter : Node
 	[Export]
 	PackedScene projectile;
 
+	Node playerNode;
+
+	public override void _Ready()
+	{
+		playerNode = Owner;
+	}
+
 	public void Shoot()
 	{
 		if (projectile == null) return;
 		Node newProjectile = projectile.Instance();
-		AddChild(newProjectile);
+		playerNode.Owner.AddChild(newProjectile);
 		Spatial nodeSpatial = newProjectile as Spatial;
-		nodeSpatial.Translation = (GetNode(spawnPoint[gun]) as Spatial).Translation;
+		Spatial spawnSpatial = (GetNode(spawnPoint[gun]) as Spatial);
+		nodeSpatial.Translation = spawnSpatial.GlobalTransform.Xform(spawnSpatial.Translation);
+		nodeSpatial.Rotation = (playerNode as Spatial).Rotation * new Vector3(0, 180, 0);
 		gun = (gun + 1) % spawnPoint.Count;
 	}
 

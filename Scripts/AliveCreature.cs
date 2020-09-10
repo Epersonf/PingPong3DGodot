@@ -27,7 +27,6 @@ public class AliveCreature : Node
 
 	public void Die()
 	{
-		Node baseNode = GetTree().Root;
-		baseNode.QueueFree();
+		Owner.QueueFree();
 	}
 }
