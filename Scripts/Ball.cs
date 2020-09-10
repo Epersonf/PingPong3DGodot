@@ -5,16 +5,11 @@ public class Ball : KinematicBody
 {
 	[Export] float speed = 5f;
 
-	Vector2 direction = new Vector2(-1, 1);
-
-	public override void _Ready()
-	{
-		
-	}
+	Vector3 direction = new Vector3(-1, 0, 1);
 
 	public override void _PhysicsProcess(float delta)
 	{
-		MoveAndSlide(new Vector3(direction.x, 0, direction.y) * speed, Vector3.Up);
+		MoveAndSlide(direction * speed, Vector3.Up);
 		CheckCollision();
 	}
 
@@ -24,10 +19,10 @@ public class Ball : KinematicBody
 		if (slideCount == 0) return;
 
 		Vector3 collisionNormal = GetSlideCollision(slideCount - 1).Normal;
+		collisionNormal.y = 0;
 
-		GD.Print(collisionNormal);
+		Vector3 reflectedDirection = direction - 2 * (direction * collisionNormal) * collisionNormal;
 
-		direction.x *= (collisionNormal.y >= 0) ? -1 : 1;
-		direction.y *= (collisionNormal.x >= 0) ? -1 : 1;
+		direction = reflectedDirection;
 	}
 }
