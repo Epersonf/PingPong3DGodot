@@ -7,7 +7,7 @@ public class Pad : KinematicBody, IAliveCreature
 
 	//export = SerializeField
 	[Export]
-	float speed = 50f;
+	float speed = 700f;
 
 	[Export]
 	float jumpForce = 500f;
@@ -20,6 +20,12 @@ public class Pad : KinematicBody, IAliveCreature
 
 	[Export]
 	float gravityForce = 10f;
+
+	[Export]
+	bool lockZ = false;
+
+	[Export]
+	bool lockX = false;
 
 	#endregion
 
@@ -58,6 +64,8 @@ public class Pad : KinematicBody, IAliveCreature
 	protected void MoveGameObject(Vector3 direction, float delta)
 	{
 		Vector3 force = direction * speed * delta;
+		if (lockX) force.x = 0;
+		if (lockZ) force.z = 0;
 		MoveAndSlide(force, Vector3.Up);
 	}
 

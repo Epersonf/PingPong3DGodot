@@ -12,10 +12,9 @@ extents = Vector3( 0.365946, 0.287499, 1 )
 [node name="Player" type="KinematicBody"]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 0, 0 )
 script = ExtResource( 2 )
-speed = 700.0
 shooterNode = NodePath("ShooterNode")
 aliveCreatureNode = NodePath("AliveCreature")
-gravityForce = 10.0
+lockZ = true
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0921726, 0, 1.50169e-08 )

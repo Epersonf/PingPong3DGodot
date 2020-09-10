@@ -13,6 +13,7 @@
 
 [node name="Bot" parent="." instance=ExtResource( 3 )]
 transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 0, -0.131, -20 )
+ballPath = NodePath("../Ball")
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 0.163733, 20 )
