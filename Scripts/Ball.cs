@@ -1,21 +1,33 @@
 using Godot;
 using System;
 
-public class Ball : Node
+public class Ball : KinematicBody
 {
-    // Declare member variables here. Examples:
-    // private int a = 2;
-    // private string b = "text";
+	[Export] float speed = 5f;
 
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
-    {
-        
-    }
+	Vector2 direction = new Vector2(-1, 1);
 
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
+	public override void _Ready()
+	{
+		
+	}
+
+	public override void _PhysicsProcess(float delta)
+	{
+		MoveAndSlide(new Vector3(direction.x, 0, direction.y) * speed, Vector3.Up);
+		CheckCollision();
+	}
+
+	public void CheckCollision()
+	{
+		int slideCount = GetSlideCount();
+		if (slideCount == 0) return;
+
+		Vector3 collisionNormal = GetSlideCollision(slideCount - 1).Normal;
+
+		GD.Print(collisionNormal);
+
+		direction.x *= (collisionNormal.y >= 0) ? -1 : 1;
+		direction.y *= (collisionNormal.x >= 0) ? -1 : 1;
+	}
 }
