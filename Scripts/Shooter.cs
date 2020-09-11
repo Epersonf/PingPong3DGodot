@@ -14,14 +14,25 @@ public class Shooter : Node
 
 	Node playerNode;
 
+	[Export]
+	int maxBullets = 2;
+
+	int bullets = 0;
+
 	public override void _Ready()
 	{
 		playerNode = Owner;
 	}
 
+	public void ResetBullets()
+    {
+		bullets = maxBullets;
+    }
+
 	public void Shoot()
 	{
-		if (projectile == null) return;
+		if (projectile == null || bullets <= 0) return;
+		bullets--;
 		Node newProjectile = projectile.Instance();
 		playerNode.Owner.AddChild(newProjectile);
 		Spatial nodeSpatial = newProjectile as Spatial;

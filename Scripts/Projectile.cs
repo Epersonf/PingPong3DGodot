@@ -16,22 +16,25 @@ public class Projectile : Area
 
 	private void _on_Timer_timeout()
 	{
-		Hit();
+		Destroy();
 	}
 
 	private void _on_Projectile_body_entered(object body)
 	{
-		Hit(body);
+		Destroy(body);
 	}
 
-	public void Hit(object body = null)
+	public void Destroy(object body = null)
 	{
+		QueueFree();
 		if (body != null)
 		{
 			IAliveCreature hit = body as IAliveCreature;
-			if (hit == null) return;
-			hit.DealDamage(damage);
+			Ball ball = body as Ball;
+			if (hit != null)
+				hit.DealDamage(damage);
+			if (ball != null)
+				ball.SetSpeed(ball.speed * 1.1f);
 		}
-		QueueFree();
 	}
 }

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Pad : KinematicBody, IAliveCreature
+public class Pad : KinematicBody
 {
 	#region Inspector Fields
 
@@ -14,9 +14,6 @@ public class Pad : KinematicBody, IAliveCreature
 
 	[Export]
 	NodePath shooterNode;
-
-	[Export]
-	NodePath aliveCreatureNode;
 
 	[Export]
 	float gravityForce = 10f;
@@ -33,9 +30,7 @@ public class Pad : KinematicBody, IAliveCreature
 
 	float upSpeed = 0;
 
-	Shooter shooter;
-
-	AliveCreature aliveCreature;
+	public Shooter shooter { get; private set; } = null;
 
 	#endregion
 
@@ -46,7 +41,6 @@ public class Pad : KinematicBody, IAliveCreature
 	{
 		//get component
 		shooter = GetNode(shooterNode) as Shooter;
-		aliveCreature = GetNode(aliveCreatureNode) as AliveCreature;
 	}
 
 	//fixedupdate
@@ -77,8 +71,6 @@ public class Pad : KinematicBody, IAliveCreature
 	}
 
 	protected void Shoot() => shooter.Shoot();
-
-	public void DealDamage(int value) => aliveCreature.DealDamage(value);
 
 	#endregion Inputs
 }

@@ -15,6 +15,7 @@ public class Player : Pad
 		float vertical = Input.GetActionStrength("ui_up") - Input.GetActionStrength("ui_down");
 
 		if (Input.IsActionJustPressed("ui_select")) Shoot();
+		if (Input.IsActionJustPressed("reload")) GetTree().ReloadCurrentScene();
 
 		if (horizontal == 0 && vertical == 0) return;
 
