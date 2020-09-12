@@ -4,25 +4,20 @@ using System.Collections.Generic;
 
 public class GameManager : Node
 {
-	public List<int> score { get; private set; } = null;
+
+	public int ballRecord { get; private set; } = 0;
 
 	public static GameManager singleton;
 
 	public override void _Ready()
 	{
 		singleton = this;
-		ResetScore();
+		ballRecord = 0;
 	}
 
-	public void ResetScore()
+	public void SetBallRecord(int newValue)
 	{
-		score = new List<int>();
-		for (int i = 0; i < 2; i++)
-			score.Add(0);
-	}
-
-	public override void _Process(float delta)
-	{
-
+		if (newValue < ballRecord) return;
+		ballRecord = newValue;
 	}
 }

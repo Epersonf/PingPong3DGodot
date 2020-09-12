@@ -12,9 +12,7 @@ public class Bot : Pad
 	{
 		base._Process(delta);
 
-		Node ball = GetObjectByTag("ball", (distance, distanceRecord, ballNode) => {
-			return distance >= distanceRecord;
-		});
+		Node ball = GetObjectByTag("ball", (distance, distanceRecord, ballNode) => distance < distanceRecord);
 
 		if (ball == null) return;
 
@@ -36,7 +34,7 @@ public class Bot : Pad
 			Spatial spatial = this as Spatial;
 			Spatial nodeSpatial = node as Spatial;
 			float distance = nodeSpatial.Translation.DistanceTo(spatial.Translation);
-			if (comparison(distance, distanceRecord, node) && toReturn != null) continue;
+			if (!comparison(distance, distanceRecord, node) && toReturn != null) continue;
 			toReturn = node;
 			distanceRecord = distance;
 		}

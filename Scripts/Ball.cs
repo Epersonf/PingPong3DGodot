@@ -6,6 +6,9 @@ public class Ball : KinematicBody
 	[Export]
 	public float speed { get; private set; } = 5f;
 
+	[Export]
+	float speedMultiplier = 1.03f;
+
 	public void SetSpeed(float speed) => this.speed = speed;
 
 	public Vector3 direction { get; private set; } = new Vector3(-1, 0, 1);
@@ -22,6 +25,8 @@ public class Ball : KinematicBody
 	{
 		int slideCount = GetSlideCount();
 		if (slideCount == 0) return;
+
+		speed *= speedMultiplier;
 
 		KinematicCollision collisionInfo = GetSlideCollision(slideCount - 1);
 

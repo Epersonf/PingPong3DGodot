@@ -7,6 +7,9 @@ public class Projectile : Area
 	int damage = 1;
 
 	[Export]
+	float ballSpeedMultiplier = 0.8f;
+
+	[Export]
 	float speed = 100;
 
 	public override void _PhysicsProcess(float delta)
@@ -34,7 +37,7 @@ public class Projectile : Area
 			if (hit != null)
 				hit.DealDamage(damage);
 			if (ball != null)
-				ball.SetSpeed(ball.speed * 1.1f);
+				ball.SetSpeed(ball.speed * ballSpeedMultiplier);
 		}
 	}
 }

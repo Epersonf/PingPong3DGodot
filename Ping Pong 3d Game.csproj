@@ -62,6 +62,7 @@
     <Compile Include="Scripts\Ball.cs" />
     <Compile Include="Scripts\BallSpawner.cs" />
     <Compile Include="Scripts\GameManager.cs" />
+    <Compile Include="Scripts\InterfaceController.cs" />
     <Compile Include="Scripts\Pad.cs" />
     <Compile Include="Scripts\PadInherited\Bot.cs" />
     <Compile Include="Scripts\PadInherited\Player.cs" />

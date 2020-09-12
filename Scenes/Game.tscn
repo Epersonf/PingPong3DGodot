@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Prefabs/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prefabs/TableRB.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Prefabs/ScoreCounter.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scripts/GameManager.cs" type="Script" id=6]
 [ext_resource path="res://Prefabs/BallSpawner.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scripts/InterfaceController.cs" type="Script" id=8]
 
 [node name="Spatial" type="Spatial"]
 
@@ -39,14 +40,19 @@ script = ExtResource( 6 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.950288, -7.22835e-08, 0.311373, -0.260108, 0.549708, 0.793829, -0.171164, -0.835357, 0.522381, 0, 2.64121, 0 )
+shadow_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource( 8 )
+scoreTextPath = NodePath("Label")
 
 [node name="Label" type="Label" parent="CanvasLayer"]
-margin_right = 54.0
+margin_right = 241.0
 margin_bottom = 19.0
-text = "Test"
-align = 1
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
+text = "Score"
 autowrap = true
 clip_text = true
 __meta__ = {
